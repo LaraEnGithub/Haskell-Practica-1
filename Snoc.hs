@@ -46,7 +46,8 @@ nthElementS = error "D:"
 -- | addFirstS. Función que obtiene la lista donde el primer elemento es el
 -- | elemento dado.
 addFirstS :: a -> ListS a -> ListS a
-addFirstS = error "D:"
+addFirstS a NilS = Snoc NilS a
+addFirstS a (Snoc l b) = Snoc (addFirstS a l) b
 
 -- | addLastS. Función que obtiene la lista donde el último elemento es el
 -- | elemento dado.
@@ -57,7 +58,7 @@ addLastS a l = (Snoc l a)
 -- | reverseS. Función que obtiene la reversa de la lista.
 reverseS :: ListS a -> ListS a
 reverseS NilS = NilS
-reverseS (Snoc l a) = addLastS (a )
+reverseS (Snoc l a) = addLastS a l
  
 -- | appendS. Función que obtiene la concatenación de dos listas.
 appendS :: ListS a -> ListS a -> ListS a

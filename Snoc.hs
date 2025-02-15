@@ -62,7 +62,9 @@ reverseS (Snoc l a) = addLastS a l
  
 -- | appendS. Función que obtiene la concatenación de dos listas.
 appendS :: ListS a -> ListS a -> ListS a
-appendS = error "D:"
+appendS NilS a = a
+appendS a NilS = a
+appendS a (Snoc x xs) = Snoc (appendS a x) xs
 
 -- | takeS. Función que obtiene la lista con los primeros n elementos.
 takeS :: Int -> ListS a -> ListS a
@@ -70,8 +72,10 @@ takeS = error "D:"
 
 -- | toHaskell. Función que dada una Lista, devuelte una lista de haskell.
 toHaskell :: ListS a -> [a]
-toHaskell = error "D:"
+toHaskell NilS = []  
+toHaskell (Snoc x xs) = toHaskell x ++ [xs]
 
 -- | fromHaskell. Función que dada una lista de Haskell, devuelve una Lista.
 fromHaskell :: [a] -> ListS a
-fromHaskell = error "D:"
+fromHaskell [] = NilS
+
